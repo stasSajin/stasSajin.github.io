@@ -1,0 +1,22 @@
+# Site navigation links
+
+- title: Blog
+  url: /blog/
+
+- title: About
+  url: /about/
+
+- title: Resume
+  url: /resume/
+
+- title: Github
+  url: http://github.com/stasSajin
+
+- title: LinkedIn
+  url: https://www.linkedin.com/in/stanislav-sajin-2a1b2aa
+  
+- title: Resources
+  url: /blogroll/
+
+- title: Search
+  url: /search/
