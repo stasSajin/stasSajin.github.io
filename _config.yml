@@ -5,7 +5,7 @@ locale: en_US
 description: A Blog by Stas Sajin
 logo: blog_logo.png
 search: true
-url: http://stassajin.github.io
+url: http://stassajin.com
 
 # Jekyll configuration
 
