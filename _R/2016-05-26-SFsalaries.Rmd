@@ -23,11 +23,11 @@ knitr::opts_chunk$set(echo = TRUE, cache=FALSE, warning = FALSE,
 #load packages
 pacman::p_load(ggplot2, reader, gender,ggthemes, gridExtra, 
                GGally, stringr,dplyr,tm, yarrr, DT, plotly, ggalt, tidyr,
-               scales, webshot)
+               scales)
 #check that packages were loaded
 pacman::p_loaded(ggplot2, reader, gender,ggthemes, gridExtra, 
                  GGally, stringr,dplyr,tm, yarrr,DT, plotly, ggalt, tidyr,
-                 scales, webshot)
+                 scales)
 ```
 
 ##Data loading, feature creation, cleaning, pre-processing

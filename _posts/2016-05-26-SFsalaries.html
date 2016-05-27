@@ -17,10 +17,10 @@ tags: [rstats]
 {% highlight r %}
 # load packages
 pacman::p_load(ggplot2, reader, gender, ggthemes, gridExtra, GGally, stringr, 
-    dplyr, tm, yarrr, DT, plotly, ggalt, tidyr, scales, webshot)
+    dplyr, tm, yarrr, DT, plotly, ggalt, tidyr, scales)
 # check that packages were loaded
 pacman::p_loaded(ggplot2, reader, gender, ggthemes, gridExtra, GGally, stringr, 
-    dplyr, tm, yarrr, DT, plotly, ggalt, tidyr, scales, webshot)
+    dplyr, tm, yarrr, DT, plotly, ggalt, tidyr, scales)
 {% endhighlight %}
 
 
@@ -30,8 +30,8 @@ pacman::p_loaded(ggplot2, reader, gender, ggthemes, gridExtra, GGally, stringr,
 ##      TRUE      TRUE      TRUE      TRUE      TRUE      TRUE      TRUE 
 ##     dplyr        tm     yarrr        DT    plotly     ggalt     tidyr 
 ##      TRUE      TRUE      TRUE      TRUE      TRUE      TRUE      TRUE 
-##    scales   webshot 
-##      TRUE      TRUE
+##    scales 
+##      TRUE
 {% endhighlight %}
 
 ##Data loading, feature creation, cleaning, pre-processing
