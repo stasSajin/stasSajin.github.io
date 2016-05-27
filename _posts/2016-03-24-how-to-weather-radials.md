@@ -97,7 +97,7 @@ hc <- highchart() %>%
 hc
 ```
 
-<iframe src="/htmlwidgets/how-to-weather-radials/highchart_uxhfjac.html" width="600" height="700"></iframe> <a href="/_includes/htmlwidgets/how-to-weather-radials/highchart_uxhfjac.html" target="_blank">open</a>
+<iframe src="/htmlwidgets/how-to-weather-radials/highchart_uxhfjac.html" width="800" height="600"></iframe> <a href="/_includes/htmlwidgets/how-to-weather-radials/highchart_uxhfjac.html" target="_blank">open</a>
 
 
 Everything seems fine.
