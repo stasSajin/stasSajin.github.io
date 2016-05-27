@@ -172,11 +172,7 @@ zeroPay <- mergedDF %>% filter(TotalPayBenefits == 0) %>% select(EmployeeName,
 datatable(zeroPay)
 {% endhighlight %}
 
-
-
-{% highlight text %}
-## Error in find_phantom(): PhantomJS not found. You can install it with webshot::install_phantomjs(). If it is installed, please make sure the phantomjs executable can be found via the PATH variable.
-{% endhighlight %}
+<img src="/figs/2016-05-26-SFsalaries/unnamed-chunk-10-1.png" title="center" alt="center" style="display: block; margin: auto;" />
 
 We have 26 individuals who had 0 pay. One reason why their pay was 0 is that they just registered as employees and did not recieve a salary yet. Another reason is that they are registered as employees, but had to take a sabatical with no pay. Regardless of the reason, the number of people with zero pay is really small and we can feel safe removing them.
 
@@ -251,11 +247,7 @@ counts <- ggplot(data = countsDf, aes(x = Status, y = n, fill = gender)) + geom_
 ggplotly(counts)
 {% endhighlight %}
 
-
-
-{% highlight text %}
-## Error in find_phantom(): PhantomJS not found. You can install it with webshot::install_phantomjs(). If it is installed, please make sure the phantomjs executable can be found via the PATH variable.
-{% endhighlight %}
+<img src="/figs/2016-05-26-SFsalaries/unnamed-chunk-16-1.png" title="center" alt="center" style="display: block; margin: auto;" />
 
 
 It seems like more females are working part relative to males. Moreover, it seems like there are more male full time employees than part time female employees. Let us check the pay distribution for full time and the part time male and female employees
@@ -276,11 +268,7 @@ meanPlot <- ggplot(data = meanGenderDf, aes(x = Status, y = meanSalary/1000,
 ggplotly()
 {% endhighlight %}
 
-
-
-{% highlight text %}
-## Error in find_phantom(): PhantomJS not found. You can install it with webshot::install_phantomjs(). If it is installed, please make sure the phantomjs executable can be found via the PATH variable.
-{% endhighlight %}
+<img src="/figs/2016-05-26-SFsalaries/unnamed-chunk-17-1.png" title="center" alt="center" style="display: block; margin: auto;" />
 
 It seems like fully employed men earn on average higher salary than females. **Fully employed women earn about 89cents for every dollar earned by fully employed men.**
 
@@ -303,11 +291,7 @@ medianPlot <- ggplot(data = medianGenderDF, aes(x = Status, y = medianSalary/100
 ggplotly()
 {% endhighlight %}
 
-
-
-{% highlight text %}
-## Error in find_phantom(): PhantomJS not found. You can install it with webshot::install_phantomjs(). If it is installed, please make sure the phantomjs executable can be found via the PATH variable.
-{% endhighlight %}
+<img src="/figs/2016-05-26-SFsalaries/unnamed-chunk-18-1.png" title="center" alt="center" style="display: block; margin: auto;" />
 
 
 The picture looks even worse. **On median, fully employed women earn about 84 cents for every dollar earned by fully employed males.**
