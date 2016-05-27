@@ -1,12 +1,12 @@
 ---
-title: "How to: Weather Radials"
-author: "Joshua Kunst"
-output:
- html_document:
-   toc: true
-   keep_md: yes
-categories: R
 layout: post
+title: "Ten Thousand Tweets"
+date: 2015-12-08
+output: html_document
+share: true
+categories: blog
+excerpt: "Visualizing My Twitter Archive with ggplot2"
+tags: [rstats]
 ---
 
 
