@@ -17,10 +17,10 @@ tags: [rstats]
 {% highlight r %}
 # load packages
 pacman::p_load(ggplot2, reader, gender, ggthemes, gridExtra, GGally, stringr, 
-    dplyr, tm, yarrr, DT, plotly, ggalt, tidyr, scales)
+    dplyr, tm, yarrr, DT, plotly, ggalt, tidyr, scales, webshot)
 # check that packages were loaded
 pacman::p_loaded(ggplot2, reader, gender, ggthemes, gridExtra, GGally, stringr, 
-    dplyr, tm, yarrr, DT, plotly, ggalt, tidyr, scales)
+    dplyr, tm, yarrr, DT, plotly, ggalt, tidyr, scales, webshot)
 {% endhighlight %}
 
 
@@ -30,8 +30,8 @@ pacman::p_loaded(ggplot2, reader, gender, ggthemes, gridExtra, GGally, stringr,
 ##      TRUE      TRUE      TRUE      TRUE      TRUE      TRUE      TRUE 
 ##     dplyr        tm     yarrr        DT    plotly     ggalt     tidyr 
 ##      TRUE      TRUE      TRUE      TRUE      TRUE      TRUE      TRUE 
-##    scales 
-##      TRUE
+##    scales   webshot 
+##      TRUE      TRUE
 {% endhighlight %}
 
 ##Data loading, feature creation, cleaning, pre-processing
@@ -175,7 +175,7 @@ datatable(zeroPay)
 
 
 {% highlight text %}
-## Error in html_screenshot(x): Please install the webshot package (if not on CRAN, try devtools::install_github("wch/webshot"))
+## Error in find_phantom(): PhantomJS not found. You can install it with webshot::install_phantomjs(). If it is installed, please make sure the phantomjs executable can be found via the PATH variable.
 {% endhighlight %}
 
 We have 26 individuals who had 0 pay. One reason why their pay was 0 is that they just registered as employees and did not recieve a salary yet. Another reason is that they are registered as employees, but had to take a sabatical with no pay. Regardless of the reason, the number of people with zero pay is really small and we can feel safe removing them.
@@ -254,7 +254,7 @@ ggplotly(counts)
 
 
 {% highlight text %}
-## Error in html_screenshot(x): Please install the webshot package (if not on CRAN, try devtools::install_github("wch/webshot"))
+## Error in find_phantom(): PhantomJS not found. You can install it with webshot::install_phantomjs(). If it is installed, please make sure the phantomjs executable can be found via the PATH variable.
 {% endhighlight %}
 
 
@@ -279,7 +279,7 @@ ggplotly()
 
 
 {% highlight text %}
-## Error in html_screenshot(x): Please install the webshot package (if not on CRAN, try devtools::install_github("wch/webshot"))
+## Error in find_phantom(): PhantomJS not found. You can install it with webshot::install_phantomjs(). If it is installed, please make sure the phantomjs executable can be found via the PATH variable.
 {% endhighlight %}
 
 It seems like fully employed men earn on average higher salary than females. **Fully employed women earn about 89cents for every dollar earned by fully employed men.**
@@ -306,7 +306,7 @@ ggplotly()
 
 
 {% highlight text %}
-## Error in html_screenshot(x): Please install the webshot package (if not on CRAN, try devtools::install_github("wch/webshot"))
+## Error in find_phantom(): PhantomJS not found. You can install it with webshot::install_phantomjs(). If it is installed, please make sure the phantomjs executable can be found via the PATH variable.
 {% endhighlight %}
 
 
