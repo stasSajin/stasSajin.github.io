@@ -7,7 +7,7 @@ output:
    keep_md: yes
 categories: R
 layout: post
-featured_image: /images/how-to-weather-radials/weatherradials.png
+featured_image: /figs/how-to-weather-radials/weatherradials.png
 ---
 
 
@@ -98,7 +98,7 @@ hc <- highchart() %>%
 hc
 ```
 
-<iframe src="/htmlwidgets/how-to-weather-radials/highchart_uxhfjac.html"></iframe> <a href="/htmlwidgets/how-to-weather-radials/highchart_uxhfjac.html" target="_blank">open</a>
+<iframe src="/_includes/htmlwidgets/how-to-weather-radials/highchart_uxhfjac.html"></iframe> <a href="/_includes/htmlwidgets/how-to-weather-radials/highchart_uxhfjac.html" target="_blank">open</a>
 
 
 Everything seems fine.
@@ -123,7 +123,7 @@ hc <- hc %>%
 hc
 ```
 
-<iframe src="/htmlwidgets/how-to-weather-radials/highchart_ruiczdt.html"></iframe> <a href="/htmlwidgets/how-to-weather-radials/highchart_ruiczdt.html" target="_blank">open</a>
+<iframe src="/_includes/htmlwidgets/how-to-weather-radials/highchart_ruiczdt.html"></iframe> <a href="/_includes/htmlwidgets/how-to-weather-radials/highchart_ruiczdt.html" target="_blank">open</a>
 
 
 Not so close.
@@ -201,7 +201,7 @@ hc <- highchart() %>%
 hc
 ```
 
-<iframe src="/htmlwidgets/how-to-weather-radials/highchart_tmyebvi.html"></iframe> <a href="/htmlwidgets/how-to-weather-radials/highchart_tmyebvi.html" target="_blank">open</a>
+<iframe src="/_includes/htmlwidgets/how-to-weather-radials/highchart_tmyebvi.html"></iframe> <a href="/_includes/htmlwidgets/how-to-weather-radials/highchart_tmyebvi.html" target="_blank">open</a>
 
 
 Yay :D! A beautiful chart same as the d3 version and only using R. So sweet!
@@ -238,7 +238,7 @@ ggplot(df, aes(date2,
   theme(legend.position = "bottom")
 ```
 
-<img src="/images/how-to-weather-radials/unnamed-chunk-6-1.png" title="plot of chunk unnamed-chunk-6" alt="plot of chunk unnamed-chunk-6" style="display: block; margin: auto;" />
+<img src="/figs/how-to-weather-radials/unnamed-chunk-6-1.png" title="plot of chunk unnamed-chunk-6" alt="plot of chunk unnamed-chunk-6" style="display: block; margin: auto;" />
 
 Nice!
 
