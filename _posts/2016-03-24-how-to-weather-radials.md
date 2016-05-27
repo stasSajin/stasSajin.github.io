@@ -16,7 +16,7 @@ featured_image: /figs/how-to-weather-radials/weatherradials.png
 TLDR: Creating weather radials with [highcharter](http://jkunst.com/highcharter/) and 
 [ggplot2](http://docs.ggplot2.org/current/).
 
-<img src="/images/how-to-weather-radials/weatherradials.png" width="50%">
+<img src="/figs/how-to-weather-radials/weatherradials.png" width="50%">
 
 I was surfing by the deep seas of the web and I found the *Brice Pierre de la Briere*'s 
 [blocks](http://bl.ocks.org/bricedev) and I saw the *weather radials* which originally are a
@@ -98,7 +98,7 @@ hc <- highchart() %>%
 hc
 ```
 
-<iframe src="/_includes/htmlwidgets/how-to-weather-radials/highchart_uxhfjac.html"></iframe> <a href="/_includes/htmlwidgets/how-to-weather-radials/highchart_uxhfjac.html" target="_blank">open</a>
+<iframe src="/htmlwidgets/how-to-weather-radials/highchart_uxhfjac.html"></iframe> <a href="/_includes/htmlwidgets/how-to-weather-radials/highchart_uxhfjac.html" target="_blank">open</a>
 
 
 Everything seems fine.
@@ -123,7 +123,7 @@ hc <- hc %>%
 hc
 ```
 
-<iframe src="/_includes/htmlwidgets/how-to-weather-radials/highchart_ruiczdt.html"></iframe> <a href="/_includes/htmlwidgets/how-to-weather-radials/highchart_ruiczdt.html" target="_blank">open</a>
+<iframe src="/htmlwidgets/how-to-weather-radials/highchart_ruiczdt.html"></iframe> <a href="/_includes/htmlwidgets/how-to-weather-radials/highchart_ruiczdt.html" target="_blank">open</a>
 
 
 Not so close.
@@ -201,7 +201,7 @@ hc <- highchart() %>%
 hc
 ```
 
-<iframe src="/_includes/htmlwidgets/how-to-weather-radials/highchart_tmyebvi.html"></iframe> <a href="/_includes/htmlwidgets/how-to-weather-radials/highchart_tmyebvi.html" target="_blank">open</a>
+<iframe src="/htmlwidgets/how-to-weather-radials/highchart_tmyebvi.html"></iframe> <a href="/_includes/htmlwidgets/how-to-weather-radials/highchart_tmyebvi.html" target="_blank">open</a>
 
 
 Yay :D! A beautiful chart same as the d3 version and only using R. So sweet!
