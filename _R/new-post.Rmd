@@ -1,13 +1,9 @@
 ---
 layout: post
-title: "Gender Pay Gap"
-date: 2016-05-26
-output:
-  html_document
-share: true
-categories: blog
-excerpt: "SF Salaries"
-tags: [rstats]
+title:  Can we get htmlwidgets to work?
+date: `r Sys.time()`
+published: true
+tags: [htmlwidgets, r]
 ---
 
 Let's find out...
@@ -62,4 +58,3 @@ globejs(lat = cities$lat, long = cities$long, value = value, color = col,
 ```
 
 Hooray!
-
