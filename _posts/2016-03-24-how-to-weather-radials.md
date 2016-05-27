@@ -7,7 +7,6 @@ output:
    keep_md: yes
 categories: R
 layout: post
-featured_image: /figs/how-to-weather-radials/weatherradials.png
 ---
 
 
@@ -98,7 +97,7 @@ hc <- highchart() %>%
 hc
 ```
 
-<iframe src="/htmlwidgets/how-to-weather-radials/highchart_uxhfjac.html"></iframe> <a href="/_includes/htmlwidgets/how-to-weather-radials/highchart_uxhfjac.html" target="_blank">open</a>
+<iframe src="/htmlwidgets/how-to-weather-radials/highchart_uxhfjac.html" width="600" height="700"></iframe> <a href="/_includes/htmlwidgets/how-to-weather-radials/highchart_uxhfjac.html" target="_blank">open</a>
 
 
 Everything seems fine.
