@@ -2,7 +2,7 @@
 layout: page
 title: About Me
 image:
-  feature: photo-wide.jpg
+  feature: aboutPhoto.jpg
 ---
 
 My name is Stas Sajin and I currently reside in Sacramento, CA. I finished my PhD in Cognitive and Brain Sciences, which is to say that I studied how human brains process and understand information. During my PhD years, I focused on finding out how listeners process accented speech, how they integrate visual and spoken information, how they learn the meaning of new words, how to more sparsely represent the structure of language, and how working memory affects the way we process the world around us. My graduate career has given me a ton of experience in running behavioral studies, asking relevant research questions, and statistics.    
