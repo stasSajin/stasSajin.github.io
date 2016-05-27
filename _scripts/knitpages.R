@@ -24,7 +24,7 @@ knit_folder <- function(infolder, outfolder, figsfolder) {
                 pattern = "\\d\\d\\d\\d\\-\\d\\d\\-\\d\\d\\-"
                 print(infile)
                 # folder = ifelse(grepl(pattern, infile), outfolder, "pages")
-                outfile = paste0(outfolder, "/", sub(".Rmd$", ".md", basename(infile)))
+                outfile = paste0(outfolder, "/", sub(".Rmd$", ".html", basename(infile)))
                 print(outfile)
                 
                 # knit only if the input file is the last one modified
