@@ -97,7 +97,7 @@ hc <- highchart() %>%
 hc
 ```
 
-<iframe src="/htmlwidgets/how-to-weather-radials/highchart_uxhfjac.html" width="800" height="600"></iframe> <a href="/_includes/htmlwidgets/how-to-weather-radials/highchart_uxhfjac.html" target="_blank">open</a>
+<iframe src="/htmlwidgets/how-to-weather-radials/highchart_uxhfjac.html" width="800" height="600"></iframe> <a href="/htmlwidgets/how-to-weather-radials/highchart_uxhfjac.html" target="_blank">open</a>
 
 
 Everything seems fine.
@@ -122,7 +122,7 @@ hc <- hc %>%
 hc
 ```
 
-<iframe src="/htmlwidgets/how-to-weather-radials/highchart_ruiczdt.html"></iframe> <a href="/_includes/htmlwidgets/how-to-weather-radials/highchart_ruiczdt.html" target="_blank">open</a>
+<iframe src="/htmlwidgets/how-to-weather-radials/highchart_ruiczdt.html" width="800" height="600"></iframe> <a href="/htmlwidgets/how-to-weather-radials/highchart_ruiczdt.html" target="_blank">open</a>
 
 
 Not so close.
@@ -200,7 +200,7 @@ hc <- highchart() %>%
 hc
 ```
 
-<iframe src="/htmlwidgets/how-to-weather-radials/highchart_tmyebvi.html"></iframe> <a href="/_includes/htmlwidgets/how-to-weather-radials/highchart_tmyebvi.html" target="_blank">open</a>
+<iframe src="/htmlwidgets/how-to-weather-radials/highchart_tmyebvi.html"></iframe width="800" height="600"> <a href="/htmlwidgets/how-to-weather-radials/highchart_tmyebvi.html" target="_blank">open</a>
 
 
 Yay :D! A beautiful chart same as the d3 version and only using R. So sweet!
