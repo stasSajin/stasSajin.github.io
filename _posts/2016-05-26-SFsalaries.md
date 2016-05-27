@@ -1,12 +1,12 @@
 ---
 layout: post
-title: "Gender Pay Gap in SF"
-date: 2016-5-26
+title: "Gender Pay Gap"
+date: 2016-05-26
 output:
   html_document
 share: true
 categories: blog
-excerpt: "SF Salaries Gender Disparity"
+excerpt: "SF Salaries"
 tags: [rstats]
 ---
 
@@ -197,7 +197,7 @@ ggplot(mergedDF, aes(x = TotalPayBenefits/1000)) + geom_histogram(aes(y = ..dens
     labs(y = "Density", x = "Salary (thousands)")
 {% endhighlight %}
 
-<img src="/figs/SFsalaries/unnamed-chunk-12-1.png" title="center" alt="center" style="display: block; margin: auto;" />
+<img src="/figs/2016-05-26-SFsalaries/unnamed-chunk-12-1.png" title="center" alt="center" style="display: block; margin: auto;" />
 
 It seems like we have two groups of individuals. One group represents the part timers and the other represents the group that had a full time salary. The NA responses have a mixture of the two groups (note the bimodality in the distribution of responses). There are a couple observations to be made:
 

@@ -1,12 +1,12 @@
 ---
 layout: post
-title: "Gender Pay Gap in SF"
-date: 2016-5-26
+title: "Gender Pay Gap"
+date: 2016-05-26
 output:
   html_document
 share: true
 categories: blog
-excerpt: "SF Salaries Gender Disparity"
+excerpt: "SF Salaries"
 tags: [rstats]
 ---
 
