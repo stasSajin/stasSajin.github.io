@@ -67,11 +67,10 @@
 {% include scripts.html %}
 {% include google_analytics.html %}
 
-<!-- htmlwidgets dependencies --> 
-{% assign dep_file = page.url | split: '/' | last | prepend : 'htmlwidgets/' %}
-{% include {{dep_file}} %}
-
-
 
 </body>
 </html>
+
+<!-- htmlwidgets dependencies --> 
+{% assign dep_file = page.url | split: '/' | last | prepend : 'htmlwidgets/' %}
+{% include {{dep_file}} %}
