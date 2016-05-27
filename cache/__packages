@@ -1,0 +1,11 @@
+base
+knitr
+RSocrata
+dplyr
+ggplot2
+streamgraph
+lubridate
+ggfortify
+zoo
+timeDate
+forecast
