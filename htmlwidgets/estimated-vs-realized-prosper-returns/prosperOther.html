@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.x.axis path {
+  display: none;
+}
+
+
+h1{
+    font-family: arial;
+    width: 1000px;
+    margin: 0 auto;
+    font-size: 30px;
+    text-align: center;
+    }
+
+
+h2{
+    font-family: arial;
+    width: 1000px;
+    margin: 0 auto;
+    font-size: 15px;
+    }
+
+.line {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 2px;
+}
+
+svg {
+  margin: 0 auto;
+  display: block;
+  align-items: center;
+}
+
+li {
+    font-family: arial;
+    width: 1000px;
+    margin: 0 auto;
+    font-size: 15px;
+    }
+
+</style>
+<body>
+<script src="//d3js.org/d3.v3.min.js"></script>
+
+<h1>
+  Estimated vs. Realized returns for over 25,000 Prosper loans
+</h1>>
+
+<h2>
+When an investor decides to lend his or her money through Prosper, they are generally given an estimate as to how much return they should expect on their investment. Nontheless, the estimate that they are given is just that, an estimate, and might not be a true reflection of the realized return on the loan. The following plot shows the difference between estimated and realized returns for the periods between July, 2009 and November, 2013. The returns are for 25992 Prosper loans.
+</h2>
+
+
+<script>
+//set up the margins
+var margin = {top: 30, right: 140, bottom: 90, left: 140},
+    width = 1200 - margin.left - margin.right,
+    height = 600 - margin.top - margin.bottom;
+
+
+//Creating Axis, color and formating time column(time format month-day-year)
+var parseDate = d3.time.format("%m/%d/%Y").parse;
+
+var x = d3.time.scale()
+    .range([0, width]);
+
+var y = d3.scale.linear()
+    .range([height, 0]);
+
+var color = d3.scale.category10();
+
+var xAxis = d3.svg.axis()
+    .scale(x)
+    .orient("bottom");
+
+var yAxis = d3.svg.axis()
+    .scale(y)
+    .orient("left");
+
+//Create line and svg element for data to bind to
+var line = d3.svg.line()
+    .interpolate("basis")
+    .x(function(d) { return x(d.month); })
+    .y(function(d) { return y(d.return); });
+
+var svg = d3.select("body").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+//Data import
+d3.csv("prosperData2.csv", function(error, data) {
+  if (error) throw error;
+
+//setting color range for all variables that are not a time variable.
+  color.domain(d3.keys(data[0]).filter(function(key) { return key !== "month"; }));
+
+//parse date into date object.
+  data.forEach(function(d) {
+    d.month = parseDate(d.month);
+  });
+
+
+
+  var returns = color.domain().map(function(name) {
+    return {
+      name: name,
+      values: data.map(function(d) {
+        return {month: d.month, return: +d[name]};
+      })
+    };
+  });
+
+//Set domains of each axis
+  x.domain(d3.extent(data, function(d) { return d.month; }));
+
+  y.domain([
+    0,
+    d3.max(returns, function(c) { return d3.max(c.values, function(v) { return v.return; }); })
+  ]);
+
+
+//Create legend from estimated and realized colums
+    var legend = svg.selectAll('g')
+      .data(returns)
+      .enter()
+      .append('g')
+      .attr('class', 'legend');
+
+    legend.append('rect')
+      .attr('x', width - 20)
+      .attr('y', function(d, i) {
+      return 45+(i * 20);
+      })
+      .attr('width', 10)
+      .attr('height', 10)
+      .style('fill', function(d) {
+      return color(d.name);
+      });
+
+    legend.append('text')
+      .attr('x', width - 8)
+      .attr('y', function(d, i) {
+      return 45+(i * 20) + 9;
+      })
+      .text(function(d) {
+      return d.name;
+      });
+
+//Call axis and draw them
+    svg.append("g")
+      .attr("class", "x axis")
+      .attr("transform", "translate(0," + height + ")")
+      .call(xAxis)
+      .append("text")
+      .attr("transform", "rotate(0)")
+      .attr("y", 24)
+      .attr("x", width/2)
+      .attr("dy", "1em")
+      .style("text-anchor", "end")
+      .text("Date");
+
+
+    svg.append("g")
+      .attr("class", "y axis")
+      .call(yAxis)
+    .append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 6)
+      .attr("font-size", "16px")
+      .attr("dy", ".71em")
+      .style("text-anchor", "end")
+      .text("Return (%)");
+
+    //Create returnType variable for line to map to
+    var returnType = svg.selectAll(".returnType")
+      .data(returns)
+    .enter().append("g")
+      .attr("class", "returnType");
+
+    returnType.append("path")
+      .attr("class", "line")
+      .attr("d", function(d) { return line(d.values); })
+      .style("stroke", function(d) { return color(d.name); });
+
+// append a g for all the mouse over nonsense
+    var mouseG = svg.append("g")
+      .attr("class", "mouse-over-effects");//
+
+    mouseG.append("path")
+      .attr("class", "mouse-line")
+      .style("stroke", "black")
+      .style("stroke-width", "1px")
+      .style("opacity", "0");
+
+    // keep a reference to all our lines
+    var lines = document.getElementsByClassName('line');
+
+    // here's a g for each circle and text on the line
+    var mousePerLine = mouseG.selectAll('.mouse-per-line')
+      .data(returns)
+      .enter()
+      .append("g")
+      .attr("class", "mouse-per-line");
+
+    // the circle
+    mousePerLine.append("circle")
+      .attr("r", 7)
+      .style("stroke", function(d) {
+      return color(d.name);
+      })
+      .style("fill", "none")
+      .style("stroke-width", "1px")
+      .style("opacity", "0");
+
+    // the text
+    mousePerLine.append("text")
+      .attr("transform", "translate(10,3)");
+
+    // rect to capture mouse movements
+    mouseG.append('svg:rect')
+      .attr('width', width)
+      .attr('height', height)
+      .attr('fill', 'none')
+      .attr('pointer-events', 'all')
+      .on('mouseout', function() { // on mouse out hide line, circles and text
+      d3.select(".mouse-line")
+        .style("opacity", "0");
+      d3.selectAll(".mouse-per-line circle")
+        .style("opacity", "0");
+      d3.selectAll(".mouse-per-line text")
+        .style("opacity", "0");
+      })
+      .on('mouseover', function() { // on mouse in show line, circles and text
+      d3.select(".mouse-line")
+        .style("opacity", "1");
+      d3.selectAll(".mouse-per-line circle")
+        .style("opacity", "1");
+      d3.selectAll(".mouse-per-line text")
+        .style("opacity", "1");
+      })
+      .on('mousemove', function() { // mouse moving over canvas
+      var mouse = d3.mouse(this);
+
+      // move the vertical line
+      d3.select(".mouse-line")
+        .attr("d", function() {
+        var d = "M" + mouse[0] + "," + height;
+        d += " " + mouse[0] + "," + 0;
+        return d;
+        });
+
+      // position the circle and text
+      d3.selectAll(".mouse-per-line")
+        .attr("transform", function(d, i) {
+        console.log(width/mouse[0])
+        var xDate = x.invert(mouse[0]),
+          bisect = d3.bisector(function(d) { return d.date; }).right;
+          idx = bisect(d.values, xDate);
+
+        var beginning = 0,
+          end = lines[i].getTotalLength(),
+          target = null;
+
+        while (true){
+          target = Math.floor((beginning + end) / 2);
+          pos = lines[i].getPointAtLength(target);
+          if ((target === end || target === beginning) && pos.x !== mouse[0]) {
+            break;
+          }
+          if (pos.x > mouse[0])      end = target;
+          else if (pos.x < mouse[0]) beginning = target;
+          else break; //position found
+        }
+
+        // update the text with y value
+        d3.select(this).select('text')
+          .text(y.invert(pos.y).toFixed(2));
+
+        // return position
+        return "translate(" + mouse[0] + "," + pos.y +")";
+      });
+    });
+});
+</script>
+
+<h2>
+A few important observations can be made:
+</h2>
+
+<ol>
+  <li>First, the estimated return provide a very optimistic picture for the returns that an investor can achieve on the loan. Notice that across the years, the realized return has been consistently smaller than estimated return.</li>
+  <li >Prosper has clearly improved it's underwriting model. You can note that the divergence between estimated and realized returns has shrunk over time. Moreover, the difference in has shrunk due to an increase in realized returns, which is a very good thing.</li>
+</ol>
+
+</body>

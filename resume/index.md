@@ -20,9 +20,9 @@ title: Resume
 
 ## Education
 * Certified Financial Analyst (CFA®) candidate. 
-	* I cleared all three levels on the first attempt (see score ranges for [Level II](https://raw.githubusercontent.com/stasSajin/stasSajin.github.io/master/images/CFALVL3.PNG) and [Level III](https://raw.githubusercontent.com/stasSajin/stasSajin.github.io/master/images/CFAlvl2.PNG))
-	* Passing the exams does not make me the Warren Buffet of investing, nontheless...
-	* I'm pursuing the the CFA® designation because it leverages the current best investment practices and because it shows a strong ethical commitment on my part to put the interests of the market, clients, and employers above my own interests   
+	* I cleared all three levels on the first attempt (see score ranges for [Level II](https://raw.githubusercontent.com/stasSajin/stasSajin.github.io/master/images/CFAlvl2.PNG) and [Level III](https://raw.githubusercontent.com/stasSajin/stasSajin.github.io/master/images/CFALVL3.PNG))
+	* Passing the exams does not make me the Warren Buffet of investing, nonetheless...
+	* I'm pursuing the the CFA® designation because it leverages the current best investment practices and because it shows, on my part, a strong ethical commitment to put the interests of the market, clients, and employers above my own interests   
 
 * Udacity, Data Analyst Nanodegree (March, 2016)
 	* Covered data munging, machine learning, AB testing 
@@ -42,7 +42,7 @@ title: Resume
 
 * Designed, executed, programmed, analyzed, and reported findings from over three dozen behavioral experiments (more than 2000 experimental subjects run) through oral or written form
 * Implemented time-series analyses in processing of eye-tracking data
-* Synthesized over one thousand experimental studies in two large scale meta-analyses
+* Synthesized over one thousand experimental studies in a large scale meta-analysis
 * Applied prediction algorithms for behavioral data. I have employed the following modeling techniques during my work: multilevel modeling, random forests, boosted trees, regression splines, SVM, PCA, k-means, hierarchical clustering, confirmatory factor analysis, and exploratory factor analysis
 * Gave departmental talk on Linear Mixed Effects Regression
 * Published first-author papers in refereed journals and presented research at national scientific meetings 
