@@ -16,7 +16,7 @@
 
 h1{
     font-family: arial;
-    width: 1000px;
+    width: 800px;
     margin: 0 auto;
     font-size: 30px;
     text-align: center;
@@ -25,7 +25,7 @@ h1{
 
 h2{
     font-family: arial;
-    width: 1000px;
+    width: 800px;
     margin: 0 auto;
     font-size: 15px;
     }
@@ -44,7 +44,7 @@ svg {
 
 li {
     font-family: arial;
-    width: 1000px;
+    width: 800px;
     margin: 0 auto;
     font-size: 15px;
     }
@@ -64,9 +64,9 @@ When an investor decides to lend his or her money through Prosper, they are gene
 
 <script>
 //set up the margins
-var margin = {top: 30, right: 140, bottom: 90, left: 140},
-    width = 1200 - margin.left - margin.right,
-    height = 600 - margin.top - margin.bottom;
+var margin = {top: 30, right: 0, bottom: 60, left: 50},
+    width = 800 - margin.left - margin.right,
+    height = 550 - margin.top - margin.bottom;
 
 
 //Creating Axis, color and formating time column(time format month-day-year)
@@ -140,9 +140,9 @@ d3.csv("prosperData2.csv", function(error, data) {
       .attr('class', 'legend');
 
     legend.append('rect')
-      .attr('x', width - 20)
+      .attr('x', width - 100)
       .attr('y', function(d, i) {
-      return 45+(i * 20);
+      return 0+(i * 20);
       })
       .attr('width', 10)
       .attr('height', 10)
@@ -151,9 +151,9 @@ d3.csv("prosperData2.csv", function(error, data) {
       });
 
     legend.append('text')
-      .attr('x', width - 8)
+      .attr('x', width - 88)
       .attr('y', function(d, i) {
-      return 45+(i * 20) + 9;
+      return 0+(i * 20) + 9;
       })
       .text(function(d) {
       return d.name;

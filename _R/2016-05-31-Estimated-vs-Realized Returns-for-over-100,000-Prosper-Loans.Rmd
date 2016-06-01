@@ -30,16 +30,19 @@ I recently opened a investor account through Prosper, and I was a bit surprised 
 
 When you click on a listing that you want to invest in, you usually see this:
 
-![center](/figs/2016-05-31-Estimated-vs-Realized Returns-for-over-100,000-Prosper-Loans/ProsperSample.png)
+![](/figs/2016-05-31-Estimated-vs-Realized Returns-for-over-100,000-Prosper-Loans/ProsperSample.png)
 
 There is only one number we care about, which is the estimated return on the loan. Now, it's important to point out that the estimated return that Prosper provides is based on historical data for loans with similar characteristics as the one you see above. In other words, the estimated return is not the return of this particular loan, but for the universe of similar type of loans that have been issued in the past.
 
 So how is this return calculated? I'll go step by step through all assumptions that are listed on prosper website:
 
-    - **Seasoned Return**: the estimated return is based on seasoned notes that have matured for at least 10 months. As Prosper indicates on their website, the returns have increased stability after a 10-month period. This is likely because bad borrowers are likely to default relatively early, leading to higher volatility and an isomorphic hazard curve. 
-    - **Effective Yield**: this includes the borrower's interest rate, minus the servicing fees, minus estimated loss of interest from charge-offs, plus late-fees, and estimated principal recovery from charge-offs.
-    - **Effective Loss**: the estimated amount of principal that would be lost due to defaults and chargeoffs on this universe of loans.
-    - **Estimated return**: represents the difference between effective yield and effective loss.
+1. **Seasoned Return**: the estimated return is based on seasoned notes that have matured for at least 10 months. As Prosper indicates on their website, the returns have increased stability after a 10-month period. This is likely because bad borrowers are likely to default relatively early, leading to higher volatility and an isomorphic hazard curve. 
+    
+2. **Effective Yield**: this includes the borrower's interest rate, minus the servicing fees, minus estimated loss of interest from charge-offs, plus late-fees, and estimated principal recovery from charge-offs.
+
+3. **Effective Loss**: the estimated amount of principal that would be lost due to defaults and chargeoffs on this universe of loans.
+
+4. **Estimated return**: represents the difference between effective yield and effective loss.
 
 To get the data, I downloaded the listing and the loan data from Prosper for the years 2005-2016. You'll have to open an account with them if you want to be able to download the data.  
 
@@ -57,7 +60,7 @@ pacman::p_loaded(data.table,ggplot2,rmarkdown,dplyr,ggthemes,Hmisc,lubridate,
 
 In the code below, I'll be reading the listing and the loans data. 
 
-```{r}
+```{r, results='hide'}
 #listing data file names
 tempListLoan = list.files(pattern="*listings.csv")
 #loan data file names
@@ -133,7 +136,7 @@ dim(combinedData)
 
 We have a total of 542872 loans and 88 variables after performing all the join operations. 
 
-I'll remove all the loans before September 2009. The reason is because Prosper has undergone some major changes in their underwriting process when they resumed their operations after the ("Quiet Period")[http://techcrunch.com/2008/11/26/sec-outlines-its-reasoning-for-shutting-down-p2p-lender-prosper/] 
+I'll remove all the loans before September 2009. The reason is because Prosper has undergone some major changes in their underwriting process when they resumed their operations after the ["Quiet Period"](http://techcrunch.com/2008/11/26/sec-outlines-its-reasoning-for-shutting-down-p2p-lender-prosper/)
 
 Lastly, I'll remove the loans that are still current. 
 
@@ -148,14 +151,14 @@ combinedData<-combinedData%>%
 
 That leaves us with about 140,000 loans that we can explore. 
 
+###Return Calculations
+
 I'll extract only variables that are of interest to calculating realized returns. 
 ```{r}
 returnData<- combinedData %>%
     select(amount_borrowed,borrower_rate,prosper_rating,term,origination_date,loan_number,age_in_months,principal_balance,service_fees_paid, principal_paid,interest_paid,prosper_fees_paid,late_fees_paid,debt_sale_proceeds_received,loan_status_description,next_payment_due_date,next_payment_due_amount, estimated_return, estimated_loss_rate)
 ```
 
-
-###Return Calculations
 ```{r, results='hide', echo=FALSE}
 returnData$principal_paid<-as.numeric(returnData$principal_paid)
 returnData$interest_paid<-as.numeric(returnData$interest_paid)
@@ -170,7 +173,6 @@ returnData$loan_status_description<-as.factor(returnData$loan_status_description
 returnData$age_in_months<-as.integer(returnData$age_in_months)
 ```
 
-### Return Calculations
 I calculate the cumulative return as follows:
 
 $$r_c=(PR+I+LF-SF-P)/P$$
@@ -191,7 +193,7 @@ returnData<-returnData %>%
 
 Next, I'll plot the daily returns.
 
-```{r}
+```{r, eval=FALSE}
 dataPlot1<-returnData %>%
     select(loan_status_description,origination_date,age_in_months, estimated_return, AnnualizedReturn) %>%
     filter(!is.na(estimated_return) & loan_status_description=="COMPLETED")

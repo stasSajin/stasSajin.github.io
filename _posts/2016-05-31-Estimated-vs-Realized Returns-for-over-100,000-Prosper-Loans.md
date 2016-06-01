@@ -16,16 +16,19 @@ I recently opened a investor account through Prosper, and I was a bit surprised 
 
 When you click on a listing that you want to invest in, you usually see this:
 
-![center](/figs/2016-05-31-Estimated-vs-Realized Returns-for-over-100,000-Prosper-Loans/ProsperSample.png)
+![](/figs/2016-05-31-Estimated-vs-Realized Returns-for-over-100,000-Prosper-Loans/ProsperSample.png)
 
 There is only one number we care about, which is the estimated return on the loan. Now, it's important to point out that the estimated return that Prosper provides is based on historical data for loans with similar characteristics as the one you see above. In other words, the estimated return is not the return of this particular loan, but for the universe of similar type of loans that have been issued in the past.
 
 So how is this return calculated? I'll go step by step through all assumptions that are listed on prosper website:
 
-    - **Seasoned Return**: the estimated return is based on seasoned notes that have matured for at least 10 months. As Prosper indicates on their website, the returns have increased stability after a 10-month period. This is likely because bad borrowers are likely to default relatively early, leading to higher volatility and an isomorphic hazard curve. 
-    - **Effective Yield**: this includes the borrower's interest rate, minus the servicing fees, minus estimated loss of interest from charge-offs, plus late-fees, and estimated principal recovery from charge-offs.
-    - **Effective Loss**: the estimated amount of principal that would be lost due to defaults and chargeoffs on this universe of loans.
-    - **Estimated return**: represents the difference between effective yield and effective loss.
+1. **Seasoned Return**: the estimated return is based on seasoned notes that have matured for at least 10 months. As Prosper indicates on their website, the returns have increased stability after a 10-month period. This is likely because bad borrowers are likely to default relatively early, leading to higher volatility and an isomorphic hazard curve. 
+    
+2. **Effective Yield**: this includes the borrower's interest rate, minus the servicing fees, minus estimated loss of interest from charge-offs, plus late-fees, and estimated principal recovery from charge-offs.
+
+3. **Effective Loss**: the estimated amount of principal that would be lost due to defaults and chargeoffs on this universe of loans.
+
+4. **Estimated return**: represents the difference between effective yield and effective loss.
 
 To get the data, I downloaded the listing and the loan data from Prosper for the years 2005-2016. You'll have to open an account with them if you want to be able to download the data.  
 
@@ -51,45 +54,16 @@ tempLoan = list.files(pattern = "*loans.csv")
 # read and combine the listing csv files
 prosperListings <- rbindlist(lapply(tempListLoan, function(file) fread(file, 
     na.strings = c("NA", ""))))
-{% endhighlight %}
 
-
-
-{% highlight text %}
-Read 2.2% of 444782 rowsRead 13.5% of 444782 rowsRead 20.2% of 444782 rowsRead 33.7% of 444782 rowsRead 45.0% of 444782 rowsRead 58.5% of 444782 rowsRead 71.9% of 444782 rowsRead 83.2% of 444782 rowsRead 94.4% of 444782 rowsRead 444782 rows and 72 (of 72) columns from 0.132 GB file in 00:00:12
-Read 31.3% of 191988 rowsRead 57.3% of 191988 rowsRead 78.1% of 191988 rowsRead 191988 rows and 72 (of 72) columns from 0.067 GB file in 00:00:06
-Read 2.7% of 373305 rowsRead 13.4% of 373305 rowsRead 26.8% of 373305 rowsRead 37.5% of 373305 rowsRead 50.9% of 373305 rowsRead 64.3% of 373305 rowsRead 77.7% of 373305 rowsRead 91.1% of 373305 rowsRead 373305 rows and 72 (of 72) columns from 0.129 GB file in 00:00:11
-Read 96.0% of 93797 rowsRead 93797 rows and 72 (of 72) columns from 0.033 GB file in 00:00:03
-{% endhighlight %}
-
-
-
-{% highlight r %}
 # read and combine the loans csv files
 prosperLoans <- rbindlist(lapply(tempLoan, function(file) fread(file, na.strings = c("NA", 
     "", "N/A"))))
 
 # for listings
 dim(prosperListings)
-{% endhighlight %}
 
-
-
-{% highlight text %}
-[1] 1160403      72
-{% endhighlight %}
-
-
-
-{% highlight r %}
 # for loans
 dim(prosperLoans)
-{% endhighlight %}
-
-
-
-{% highlight text %}
-[1] 558157     21
 {% endhighlight %}
 
 Right from the start, the data presents us with some challenges. The listing data has information about estimated returns for a loan, while the loans data has information that would help us calculate the realized returns. We need to merge these two data sets together with a full join function. This is not the challenge. The challenge is that there is no unique key number for each loan across the two dataframes. In other words, we don't know how do loans in the loan listings dataframe corresponds to the funded loans in the loans dataframe. Without a unique identifier, this whole endeavor might seem like a lost cause. 
@@ -185,7 +159,7 @@ dim(combinedData)
 
 We have a total of 542872 loans and 88 variables after performing all the join operations. 
 
-I'll remove all the loans before September 2009. The reason is because Prosper has undergone some major changes in their underwriting process when they resumed their operations after the ("Quiet Period")[http://techcrunch.com/2008/11/26/sec-outlines-its-reasoning-for-shutting-down-p2p-lender-prosper/] 
+I'll remove all the loans before September 2009. The reason is because Prosper has undergone some major changes in their underwriting process when they resumed their operations after the ["Quiet Period"](http://techcrunch.com/2008/11/26/sec-outlines-its-reasoning-for-shutting-down-p2p-lender-prosper/)
 
 Lastly, I'll remove the loans that are still current. 
 
@@ -200,6 +174,8 @@ combinedData <- combinedData %>% filter(origination_date >= as.Date("2009-09-01"
 
 That leaves us with about 140,000 loans that we can explore. 
 
+###Return Calculations
+
 I'll extract only variables that are of interest to calculating realized returns. 
 
 {% highlight r %}
@@ -211,10 +187,7 @@ returnData <- combinedData %>% select(amount_borrowed, borrower_rate, prosper_ra
 {% endhighlight %}
 
 
-###Return Calculations
 
-
-### Return Calculations
 I calculate the cumulative return as follows:
 
 $$r_c=(PR+I+LF-SF-P)/P$$
@@ -253,8 +226,6 @@ highchart() %>% hc_title(text = "Prosper Estimated vs. Realized Daily Returns") 
     dataPlot2$Estimated, name = "Mean Estimated Return") %>% hc_add_series_times_values(as.Date(dataPlot2$origination_date), 
     dataPlot2$Realized, name = "Mean Realized Return") %>% hc_add_theme(hc_theme_db())
 {% endhighlight %}
-
-![center](/figs/2016-05-31-Estimated-vs-Realized Returns-for-over-100,000-Prosper-Loans/unnamed-chunk-8-1.png)
 
 <iframe src="/htmlwidgets/estimated-vs-realized-prosper-returns/prosperDaily.html" width="800" height="550" frameBorder="0"></iframe> <a href="/htmlwidgets/estimated-vs-realized-prosper-returns/prosperDaily.html" target="_blank">open</a>
 
