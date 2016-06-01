@@ -13,7 +13,7 @@ tags: [p2p, R, Prosper]
 
 **Introduction**
 -----
-I recently opened a investor account through Prosper, and I was a bit surprised by the relatively high return estimates that they provide for their loans. As of May 31, 2016, they show a 6.81% estimated weighted average return on all their loans (the AA rating notes have 4.38% return and the HR loans have 11.13%). For a fixed income investment that has an active secondary market and offers some degree of diversification, this seems like a decent investment opportunity. Nonetheless, I wanted to find out for myself how well does the estimated return matches with the actual historical return on the loans that they offer. Ultimately, Prosper is a financial institution that tries to sell its platform to investors, so it is not immune to over-promising ([remember the CDOs marketed in 2005?](https://www.youtube.com/watch?v=3hG4X5iTK8M)). Hence, I expected to see a small divergence between estimated and realized returns, with the former offering a few basis points higher return. 
+I recently opened a investor account through Prosper, and I was a bit surprised by the relatively high return estimates that they provide for their loans. As of May 31, 2016, they show a 6.81% estimated weighted average return on all their loans (the AA rating notes have 4.38% return and the HR loans have 11.13%). Nonetheless, I wanted to find out for myself how well does the estimated return matches with the actual historical return on the loans. Ultimately, Prosper is a financial institution that tries to sell its platform to investors, so it is not immune to over-promising ([remember the CDOs marketed in 2005?](https://www.youtube.com/watch?v=3hG4X5iTK8M)). Hence, I expected to see a small divergence between estimated and realized returns, with the former offering a few basis points higher return. 
 
 When you click on a listing that you want to invest in, you usually see this:
 
@@ -156,10 +156,11 @@ That leaves us with about 140,000 loans that we can explore.
 I'll extract only variables that are of interest to calculating realized returns. 
 
 {% highlight r %}
-returnData <- combinedData %>% select(amount_borrowed, borrower_rate, prosper_rating, 
-    term, origination_date, loan_number, age_in_months, principal_balance, service_fees_paid, 
-    principal_paid, interest_paid, prosper_fees_paid, late_fees_paid, debt_sale_proceeds_received, 
-    loan_status_description, next_payment_due_date, next_payment_due_amount, 
+returnData <- combinedData %>% 
+	select(amount_borrowed, borrower_rate, prosper_rating, 
+    term, origination_date, loan_number, age_in_months, 
+	principal_balance, service_fees_paid, principal_paid, 
+	interest_paid, prosper_fees_paid, late_fees_paid, debt_sale_proceeds_received, loan_status_description, next_payment_due_date, next_payment_due_amount, 
     estimated_return, estimated_loss_rate)
 {% endhighlight %}
 
@@ -180,8 +181,8 @@ $$r_a=(1+r_c)^{12/LoanAge} $$
 {% highlight r %}
 returnData <- returnData %>% mutate(cummulativeReturn = (principal_paid + interest_paid + 
     prosper_fees_paid + late_fees_paid + service_fees_paid - amount_borrowed)/amount_borrowed) %>% 
-    mutate(AnnualizedReturn = ((1 + cummulativeReturn)^(12/age_in_months)) - 
-        1)
+    mutate(AnnualizedReturn = 
+		((1 + cummulativeReturn)^(12/age_in_months)) - 1)
 {% endhighlight %}
 
 **Plots**
@@ -189,18 +190,25 @@ returnData <- returnData %>% mutate(cummulativeReturn = (principal_paid + intere
 Next, I'll plot the daily returns.
 
 {% highlight r %}
-dataPlot1 <- returnData %>% select(loan_status_description, origination_date, 
-    age_in_months, estimated_return, AnnualizedReturn) %>% filter(!is.na(estimated_return) & 
+dataPlot1 <- returnData %>% 
+	select(loan_status_description, origination_date, 
+    age_in_months, estimated_return, AnnualizedReturn) %>% 
+	filter(!is.na(estimated_return) & 
     loan_status_description == "COMPLETED")
 
-dataPlot2 <- dataPlot1 %>% group_by(origination_date) %>% summarise(Estimated = mean(estimated_return), 
-    Realized = mean(AnnualizedReturn)) %>% arrange(origination_date)
+dataPlot2 <- dataPlot1 %>% 
+	group_by(origination_date) %>% 
+	summarise(Estimated = mean(estimated_return), 
+    Realized = mean(AnnualizedReturn)) %>% 
+	arrange(origination_date)
 
 highchart() %>% hc_title(text = "Prosper Estimated vs. Realized Daily Returns") %>% 
     hc_subtitle(text = "This graph is based on the dataset provided on Prosper website") %>% 
-    hc_tooltip(valueDecimals = 2) %>% hc_add_serie_times_values(as.Date(dataPlot2$origination_date), 
+    hc_tooltip(valueDecimals = 2) %>% 
+	hc_add_serie_times_values(as.Date(dataPlot2$origination_date), 
     dataPlot2$Estimated, name = "Mean Estimated Return") %>% hc_add_series_times_values(as.Date(dataPlot2$origination_date), 
-    dataPlot2$Realized, name = "Mean Realized Return") %>% hc_add_theme(hc_theme_db())
+    dataPlot2$Realized, name = "Mean Realized Return") %>% 
+	hc_add_theme(hc_theme_db())
 {% endhighlight %}
 
 <iframe src="/htmlwidgets/estimated-vs-realized-prosper-returns/prosperDaily.html" width="800" height="550" frameBorder="0"></iframe> <a href="/htmlwidgets/estimated-vs-realized-prosper-returns/prosperDaily.html" target="_blank">open</a>
@@ -215,7 +223,7 @@ Several things become very apparent:
 3. The 2015-2016 period shows higher volatility in realized returns. This is because most loans are still not matured, so the daily return averages are calculated over fewer loans.
     
     
-I was really surprized by these findings, since the chart above suggests that Prosper has been providing over-optimistic estimates. I tried to perform the same analyses as above on a different [Prosper dataset](https://docs.google.com/document/d/1qEcwltBMlRYZT-l699-71TzInWfk4W9q5rTCSvDVMpc/pub?embedded=true), with loans up to 03/11/2014, nontheless the results were the same. You can see the same general pattern in the D3 graph below.
+I was really surprised by these findings, since the chart above suggests that Prosper has been providing over-optimistic estimates. I tried to perform the same analyses as above on a different [Prosper dataset](https://docs.google.com/document/d/1qEcwltBMlRYZT-l699-71TzInWfk4W9q5rTCSvDVMpc/pub?embedded=true), with loans up to 03/11/2014, nontheless the results were the same. You can see the same general pattern in the D3 graph below.
 
 <iframe src="/htmlwidgets/estimated-vs-realized-prosper-returns/prosperOther.html" width="880" height="1050" frameBorder="0"></iframe> <a href="/htmlwidgets/estimated-vs-realized-prosper-returns/prosperOther.html" target="_blank">open</a>
 
