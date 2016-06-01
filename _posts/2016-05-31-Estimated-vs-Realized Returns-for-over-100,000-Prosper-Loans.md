@@ -184,7 +184,7 @@ returnData <- returnData %>% mutate(cummulativeReturn = (principal_paid + intere
         1)
 {% endhighlight %}
 
-**plots**
+**Plots**
 ----
 Next, I'll plot the daily returns.
 
