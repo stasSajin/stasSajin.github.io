@@ -238,6 +238,6 @@ Several things become very apparent:
     
 I was really surprized by these findings, since the chart above suggests that Prosper has been providing over-optimistic estimates. I tried to perform the same analyses as above on a different [Prosper dataset](https://docs.google.com/document/d/1qEcwltBMlRYZT-l699-71TzInWfk4W9q5rTCSvDVMpc/pub?embedded=true), with loans up to 03/11/2014, nontheless the results were the same. You can see the D3 graph below.
 
-<iframe src="/htmlwidgets/estimated-vs-realized-prosper-returns/prosperOther.html" width="800" height="550" frameBorder="0"></iframe> <a href="/htmlwidgets/estimated-vs-realized-prosper-returns/prosperOther.html" target="_blank">open</a>
+<iframe src="/htmlwidgets/estimated-vs-realized-prosper-returns/prosperOther.html" width="850" height="650" frameBorder="0"></iframe> <a href="/htmlwidgets/estimated-vs-realized-prosper-returns/prosperOther.html" target="_blank">open</a>
 
 
