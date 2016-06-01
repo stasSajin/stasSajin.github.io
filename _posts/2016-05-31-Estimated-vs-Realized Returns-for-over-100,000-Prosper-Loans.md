@@ -13,6 +13,7 @@ tags: [p2p, R, Prosper]
 
 
 ##Introduction
+
 I recently opened a investor account through Prosper, and I was a bit surprised by the relatively high return estimates that they provide for their loans. As of May 31, 2016, they show a 6.81% estimated weighted average return on all their loans (the AA rating notes have 4.38% return and the HR loans have 11.13%). For a fixed income investment that has an active secondary market and offers some degree of diversification, this seems like a decent investment opportunity. Nonetheless, I wanted to find out for myself how well does the estimated return matches with the actual historical return on the loans that they offer. Ultimately, Prosper is a financial institution that tries to sell its platform to investors, so it is not immune to over-promising ([remember the CDOs marketed in 2005?](https://www.youtube.com/watch?v=3hG4X5iTK8M)). Hence, I expected to see a small divergence between estimated and realized returns, with the former offering a few basis points higher return. 
 
 When you click on a listing that you want to invest in, you usually see this:
@@ -34,6 +35,7 @@ So how is this return calculated? I'll go step by step through all assumptions t
 To get the data, I downloaded the listing and the loan data from Prosper for the years 2005-2016. You'll have to open an account with them if you want to be able to download the data.  
 
 ###Libraries
+
 {% highlight text %}
  data.table     ggplot2   rmarkdown       dplyr    ggthemes       Hmisc 
        TRUE        TRUE        TRUE        TRUE        TRUE        TRUE 
@@ -151,6 +153,7 @@ combinedData <- combinedData %>%
 That leaves us with about 140,000 loans that we can explore. 
 
 ###Return Calculations
+
 I'll extract only variables that are of interest to calculating realized returns. 
 
 {% highlight r %}
@@ -184,7 +187,6 @@ returnData <- returnData %>% mutate(cummulativeReturn = (principal_paid + intere
 
 
 Next, I'll plot the daily returns.
-
 
 {% highlight r %}
 dataPlot1 <- returnData %>% select(loan_status_description, origination_date, 
