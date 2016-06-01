@@ -34,7 +34,7 @@ So how is this return calculated? I'll go step by step through all assumptions t
 To get the data, I downloaded the listing and the loan data from Prosper for the years 2005-2016. You'll have to open an account with them if you want to be able to download the data.  
 
 **Libraries**
-
+-----
 {% highlight text %}
  data.table     ggplot2   rmarkdown       dplyr    ggthemes       Hmisc 
        TRUE        TRUE        TRUE        TRUE        TRUE        TRUE 
@@ -185,7 +185,7 @@ returnData <- returnData %>% mutate(cummulativeReturn = (principal_paid + intere
 {% endhighlight %}
 
 **Plots**
-----
+-----
 Next, I'll plot the daily returns.
 
 {% highlight r %}
@@ -215,7 +215,7 @@ Several things become very apparent:
 3. The 2015-2016 period shows higher volatility in realized returns. This is because most loans are still not matured, so the daily return averages are calculated over fewer loans.
     
     
-I was really surprized by these findings, since the chart above suggests that Prosper has been providing over-optimistic estimates. I tried to perform the same analyses as above on a different [Prosper dataset](https://docs.google.com/document/d/1qEcwltBMlRYZT-l699-71TzInWfk4W9q5rTCSvDVMpc/pub?embedded=true), with loans up to 03/11/2014, nontheless the results were the same. You can see the D3 graph below.
+I was really surprized by these findings, since the chart above suggests that Prosper has been providing over-optimistic estimates. I tried to perform the same analyses as above on a different [Prosper dataset](https://docs.google.com/document/d/1qEcwltBMlRYZT-l699-71TzInWfk4W9q5rTCSvDVMpc/pub?embedded=true), with loans up to 03/11/2014, nontheless the results were the same. You can see the same general pattern in the D3 graph below.
 
 <iframe src="/htmlwidgets/estimated-vs-realized-prosper-returns/prosperOther.html" width="880" height="1050" frameBorder="0"></iframe> <a href="/htmlwidgets/estimated-vs-realized-prosper-returns/prosperOther.html" target="_blank">open</a>
 
