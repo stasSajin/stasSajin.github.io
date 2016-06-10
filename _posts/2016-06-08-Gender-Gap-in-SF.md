@@ -300,7 +300,7 @@ ggplotly(counts) %>%
 
 <iframe src="/htmlwidgets/gender-pay-gap-in-sf/gender_counts.html" frameBorder="0" width="800" height="550"></iframe> <a href="/htmlwidgets/gender-pay-gap-in-sf/gender_counts.html" target="_blank">open</a>
 
-It seems like more females are working part relative to males, although the difference is fairly small. Moreover, it seems like there are more male full time employees than part time female employees. This indicates that labor force participation among female workers is not as high as for male workers.
+It seems like more females are working part time relative to males, although the difference is fairly small. Moreover, it seems like there are more male full time employees than part time female employees. This indicates that labor force participation among female workers is not as high as for male workers.
 
 Let us check the pay distribution for full time and the part time male and female employees for each job status. The graph below will plot the box-plots for total compensation, broken down by gender and work status. Feel free to hover over the graph for interactivity. The diamonds represent the mean compensation.  
 
