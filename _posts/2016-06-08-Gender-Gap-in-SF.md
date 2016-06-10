@@ -302,7 +302,7 @@ ggplotly(counts) %>%
 
 It seems like more females are working part relative to males, although the difference is fairly small. Moreover, it seems like there are more male full time employees than part time female employees. This indicates that labor force participation among female workers is not as high as for male workers.
 
-Let us check the pay distribution for full time and the part time male and female employees for each job status
+Let us check the pay distribution for full time and the part time male and female employees for each job status. The graph below will plot the box-plots for total compensation, broken down by gender and work status. Feel free to hover over the graph for interactivity. The diamonds represent the mean compensation.  
 
 
 {% highlight r %}
