@@ -17,6 +17,7 @@ There has been a lot of discussion in the media about gender pay gap. Only a few
 Since I will be moving to SF soon, I wanted to find out the situation in regard to gender pay and employment gap. My impression of SF is that it is one of the most culturally progressive and diverse cities in the US. Nonetheless, as I found out, it is not immune to the gender gap issues that plague the rest of the US. 
 
 Here is what we hope to accomplish in this post:
+
 1. We'll use the SF City salary data, which contains the names, positions, agency, and the compensation for each individual within the SF city government.
 2. Then we'll try to predict the gender of an employee based on their name.
 3. We'll examine how many males and females are employed within the SF city government.
@@ -50,7 +51,7 @@ pacman::p_loaded(ggplot2, reader, gender,ggthemes,
 ##     TRUE     TRUE     TRUE     TRUE     TRUE
 {% endhighlight %}
 
-##Data loading, feature creation, cleaning, pre-processing
+## Data loading, feature creation, cleaning, pre-processing
 
 {% highlight r %}
 salaries<-read.csv("Salaries.csv", na.strings=c("Not Provided"," ",""), 
@@ -297,7 +298,7 @@ ggplotly(counts) %>%
     layout(autosize = F, width = 700, height = 500, margin = m)
 {% endhighlight %}
 
-<iframe src="/htmlwidgets/gender-pay-gap-in-sf/gender_counts.html" frameBorder="0"></iframe> <a href="/htmlwidgets/gender-pay-gap-in-sf/gender_counts.html" target="_blank">open</a>
+<iframe src="/htmlwidgets/gender-pay-gap-in-sf/gender_counts.html" frameBorder="0" width="800" height="550"></iframe> <a href="/htmlwidgets/gender-pay-gap-in-sf/gender_counts.html" target="_blank">open</a>
 
 It seems like more females are working part relative to males, although the difference is fairly small. Moreover, it seems like there are more male full time employees than part time female employees. This indicates that labor force participation among female workers is not as high as for male workers.
 
@@ -324,7 +325,7 @@ genderSalaries<-ggplot(genderDF, aes(x=gender, y=`Total Pay`, fill=gender)) +
 ggplotly() %>% layout(autosize = F, width = 700, height = 500, margin = m)
 {% endhighlight %}
 
-<iframe src="/htmlwidgets/gender-pay-gap-in-sf/gender_compensation.html" frameBorder="0"></iframe> <a href="/htmlwidgets/gender-pay-gap-in-sf/gender_compensation.html" target="_blank">open</a>
+<iframe src="/htmlwidgets/gender-pay-gap-in-sf/gender_compensation.html" frameBorder="0" width="800" height="550"></iframe> <a href="/htmlwidgets/gender-pay-gap-in-sf/gender_compensation.html" target="_blank">open</a>
 
 There are a few things one can gather from this graph. 
 
@@ -365,7 +366,7 @@ Let's find now the wages lost due to employment gap and gender pay gap for full 
 
 
 {% highlight r %}
-#about 546 million wage differential because of employment gap.
+# about 546 million wage differential because of employment gap.
 {% endhighlight %}
 
 
