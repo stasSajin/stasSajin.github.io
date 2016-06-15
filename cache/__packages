@@ -1,9 +1,0 @@
-base
-knitr
-weatherData
-dplyr
-ggplot2
-viridis
-scales
-highcharter
-lubridate

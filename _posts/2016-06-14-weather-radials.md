@@ -61,17 +61,7 @@ Do some data pre-processing.
 #create weather vars
 weather_Data <- weather_Data %>% 
   mutate(date2 = as.Date(ymd(Date))) 
-{% endhighlight %}
 
-
-
-{% highlight text %}
-## Error: could not find function "ymd"
-{% endhighlight %}
-
-
-
-{% highlight r %}
 #replacing the T and 0 values for precipitation with NA and changing it to numeric
 weather_Data$PrecipitationIn[weather_Data$PrecipitationIn == "T"] <- NA
 weather_Data$PrecipitationIn[weather_Data$PrecipitationIn == "0"] <- NA
@@ -108,12 +98,6 @@ ggplot()+
        subtitle = "The area of the inner most circles contain the temperatures from 0-20 ?F and consecutively larger circles contain an additional 20 ?F. \nThe brightly colored lines represent the daily mean temperature for each location",
        x = NULL, y = NULL) +
     facet_wrap(~city)+labs(caption = "Note that Sacramento recieves very little precipitation, while Binghamton has pretty much all year-round rainy/snowy weather.")
-{% endhighlight %}
-
-
-
-{% highlight text %}
-## Error in eval(expr, envir, enclos): object 'date2' not found
 {% endhighlight %}
 
 ![center](/figs/2016-06-14-weather-radials/unnamed-chunk-4-1.png)
