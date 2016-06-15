@@ -6,7 +6,7 @@ output:
   html_document
 share: true
 categories: blog
-excerpt: "'Plotting weather radials'"
+excerpt: "Plotting weather radials"
 tags: [weather radials, R, ggplot2, data viz]
 ---
 
@@ -30,6 +30,7 @@ library(dplyr)
 library(ggplot2)
 library(viridis)
 library(scales)
+library(lubridate)
 library(highcharter) #for datetime_to_timestamp function
 ```
 
