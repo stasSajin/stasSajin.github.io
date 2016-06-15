@@ -108,7 +108,7 @@ If you're interested in creating animated radials, I recommend that you check th
 
 ----
 
-Despite the unpredictable weather and low temperatures, it might be suprising to know that bad weather is generally associated with better productivity and increased performance at cognitive tasks that require focused attention (see [Lee and colleagues, 2014](http://scholar.harvard.edu/files/jooajulialee/files/jap_final_rainmakers_2014-01192-001.pdf?m=1400193142)). 
+Despite the unpredictable weather and low temperatures, it might be surprising to know that bad weather is generally associated with better productivity and increased performance at cognitive tasks that require focused attention (see [Lee and colleagues, 2014](http://scholar.harvard.edu/files/jooajulialee/files/jap_final_rainmakers_2014-01192-001.pdf?m=1400193142)). 
 
 
 
